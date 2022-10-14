@@ -3,12 +3,13 @@ import { Slot } from '@radix-ui/react-slot'
 import { ReactNode } from 'react'
 
 export interface HeadingProps {
-  size?: 'default' | 'sm' | 'lg'
-  children: ReactNode
   asChild?: boolean
+  children: ReactNode
+  className?: string
+  size?: 'default' | 'sm' | 'lg'
 }
 
-export function Heading({ size = 'default', children, asChild }: HeadingProps) {
+export function Heading({ asChild, children, className, size = 'default' }: HeadingProps) {
   const Component = asChild ? Slot : 'h2'
 
   return (
@@ -17,7 +18,9 @@ export function Heading({ size = 'default', children, asChild }: HeadingProps) {
         'text-xl': size === 'default',
         'text-lg': size === 'sm',
         'text-2xl': size === 'lg',
-      }) }
+      },
+      className
+      ) }
     >
       { children }
     </Component>

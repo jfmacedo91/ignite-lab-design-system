@@ -3,12 +3,13 @@ import { Slot } from '@radix-ui/react-slot'
 import { ReactNode } from 'react'
 
 export interface TextProps {
-  size?: 'default' | 'sm' | 'lg'
-  children: ReactNode
   asChild?: boolean
+  children: ReactNode
+  className?: string
+  size?: 'default' | 'sm' | 'lg'
 }
 
-export function Text({ size = 'default', children, asChild }: TextProps) {
+export function Text({ asChild, children, className, size = 'default' }: TextProps) {
   const Component = asChild ? Slot : 'span'
 
   return (
@@ -17,7 +18,9 @@ export function Text({ size = 'default', children, asChild }: TextProps) {
         'text-default': size === 'default',
         'text-sm': size === 'sm',
         'text-md': size === 'lg',
-      }) }
+      },
+      className
+      ) }
     >
       { children }
     </Component>
